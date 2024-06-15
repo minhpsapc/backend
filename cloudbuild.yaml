@@ -14,6 +14,6 @@ steps:
     - 'my-java-app=gcr.io/doantotnghiep-426507/backend:latest'
   env:
     - 'CLOUDSDK_COMPUTE_ZONE=africa-south1-a'
-    - 'CLOUDSDK_CONTAINER_CLUSTER=backend-cluster'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=doantotnghiep'
 images:
 - 'gcr.io/doantotnghiep-426507/backend'
