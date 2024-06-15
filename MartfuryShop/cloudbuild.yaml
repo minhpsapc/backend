@@ -1,0 +1,19 @@
+steps:
+- name: 'maven:3.6.3-jdk-8'
+  entrypoint: 'mvn'
+  args: ['clean', 'install']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/doantotnghiep-426507/backend', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/doantotnghiep-426507/backend']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+    - 'set'
+    - 'image'
+    - 'deployment/backend-deployment'
+    - 'my-java-app=gcr.io/doantotnghiep-426507/backend:latest'
+  env:
+    - 'CLOUDSDK_COMPUTE_ZONE=africa-south1-a'
+    - 'CLOUDSDK_CONTAINER_CLUSTER=backend-cluster'
+images:
+- 'gcr.io/doantotnghiep-426507/backend'
